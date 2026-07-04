@@ -1,0 +1,31 @@
+import threading
+import time
+
+
+def SumEven(No):
+    Sum=0
+    for i in range(2,No,2):
+        Sum=Sum+i
+    print("Summation of No is:",Sum)
+    
+def SumOdd(No):
+    Sum=0
+    for i in range(1,No,2):
+        Sum=Sum+i
+    print("Summation of No is:",Sum)
+    
+
+def main():
+    start_time=time.perf_counter()
+    
+    t1=threading.Thread(target=SumEven,args=(10000000,))
+    t2=threading.Thread(target=SumOdd,args=(10000000,))
+    end_time=time.perf_counter()
+    t1.start()
+    t2.start()
+    
+    print(f"Time required is {end_time-start_time:.5f}")
+   
+
+if __name__=="__main__":
+    main()
